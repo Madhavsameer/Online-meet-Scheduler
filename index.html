@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Google Calendar API Quickstart</title>
+  <meta charset="utf-8" />
+  <style>
+    form {
+      margin: 10px;
+    }
+    
+    fieldset {
+      width: fit-content;
+    }
+
+    input {
+      margin-block: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <p>Google Calendar API Quickstart</p>
+
+  <!--Add buttons to initiate auth sequence and sign out-->
+  <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+  <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+  <br />
+  <form id="event_form">
+    <fieldset>
+      <input type="text" name="title" id="title" placeholder="Add Title" class="input-title" />
+      <br />
+      <textarea type="text" name="desc" id="desc" placeholder="Add Descreption" class="input-title"></textarea>
+      <br />
+      <label>Date</label>
+      <input type="date" name="date" id="date" />
+      <div>
+        <label>Start Time</label>
+        <input type="time" name="st" id="st" />
+        <label>End Time</label>
+        <input type="time" name="et" id="et" />
+      </div>
+      <button type="button" onclick="addEvent()">Schedule</button>
+    </fieldset>
+  </form>
+  <pre id="content" style="white-space: pre-wrap;"></pre>
+  <script src="./index.js" type="text/javascript"></script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+  <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+</body>
+
+</html>
