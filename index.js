@@ -155,6 +155,8 @@ const addEvent = () => {
 
   const startTime = new Date(date + "," + start).toISOString();
   const endTime = new Date(date + "," + end).toISOString();
+  const attendeesInput = document.getElementById("attendees").value;
+  const attendeesArray = attendeesInput.split(",").map(email => ({ email: email.trim() }));
 
   var event = {
     summary: title,
@@ -169,7 +171,7 @@ const addEvent = () => {
       timeZone: "America/Los_Angeles"
     },
     recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
-    attendees: [{ email: "210101120112@cutm.ac.in" }, { email: "210101120097@cutm.ac.in" }],
+    attendees: attendeesArray,
     reminders: {
       useDefault: false,
       overrides: [
@@ -210,6 +212,7 @@ const addEvent = () => {
       })
       .execute(function(event) {
         console.log("Conference created for event: %s", event.htmlLink);
+        alert("Meeting Successfully Created !")
       });
   }
 };
