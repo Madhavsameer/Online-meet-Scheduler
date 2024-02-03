@@ -132,12 +132,29 @@ async function listUpcomingEvents() {
     return;
   }
   // Flatten to string to display
-  const output = events.reduce(
-    (str, event) =>
-      `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
-    "Events:\n"
-  );
-  document.getElementById("content").innerText = output;
+
+  //removed from here
+//   const output = events.reduce(
+//     (str, event) =>
+//       `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
+//     "Events:\n"
+//   );
+//   document.getElementById("content").innerText = output;
+// }
+  //ended here
+  const output = events.reduce((str, event) => {
+    const meetLink = event.hangoutLink ? event.hangoutLink : '';
+    return `${str}<p>${event.summary} (${event.start.dateTime || event.start.date})</p><button onclick="joinMeeting('${meetLink}')">Join Meeting</button><br>`;
+  }, "Events:<br>");
+
+  document.getElementById("content").innerHTML = output;
+}
+function joinMeeting(meetLink) {
+  if (meetLink) {
+    window.open(meetLink, '_blank');
+  } else {
+    alert('No Google Meet link available for this event.');
+  }
 }
 
 const addEvent = () => {
