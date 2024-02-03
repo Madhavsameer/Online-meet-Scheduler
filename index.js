@@ -187,7 +187,7 @@ const addEvent = () => {
       dateTime: endTime,
       timeZone: "America/Los_Angeles"
     },
-    recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
+    recurrence: ["RRULE:FREQ=DAILY;COUNT=1"],
     attendees: attendeesArray,
     reminders: {
       useDefault: false,
